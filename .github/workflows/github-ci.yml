@@ -22,14 +22,6 @@ jobs:
       - name: Clear Maven cache  # Доданий крок для очищення кешу Maven
         run: rm -rf ~/.m2/repository
 
-      - name: Cache Maven packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: '${{ runner.os }}-maven-${{ hashFiles("pom.xml") }}'
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
       - name: Build project
         run: mvn clean install -e -X  # Додано для отримання детальнішої інформації про помилки
 
