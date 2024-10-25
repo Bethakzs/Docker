@@ -43,7 +43,7 @@ jobs:
 
   dockerize:
     runs-on: ubuntu-latest
-    needs: coverage
+#    needs: coverage
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
