@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y maven
 COPY . .
 RUN mvn clean package
 
-FROM eclipse-temurin:22-jre-jammy
+FROM eclipse-temurin:22-jre-jammy AS runtime
 
 COPY --from=build /target/*.jar app.jar
 
