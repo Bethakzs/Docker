@@ -19,11 +19,11 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
 
-      - name: Clear Maven cache  # Доданий крок для очищення кешу Maven
+      - name: Clear Maven cache
         run: rm -rf ~/.m2/repository
 
       - name: Build project
-        run: mvn clean install -e -X  # Додано для отримання детальнішої інформації про помилки
+        run: mvn clean install -e -X
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
