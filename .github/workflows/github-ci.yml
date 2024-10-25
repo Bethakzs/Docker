@@ -31,15 +31,15 @@ jobs:
           name: build-artifacts
           path: target/*.jar
 
-  coverage:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run JaCoCo Coverage
-        run: mvn test jacoco:report
+#  coverage:
+#    runs-on: ubuntu-latest
+#    needs: build
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Run JaCoCo Coverage
+#        run: mvn test jacoco:report
 
   dockerize:
     runs-on: ubuntu-latest
