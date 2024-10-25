@@ -19,20 +19,20 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
 
-      - name: Cache Gradle packages
+      - name: Cache Maven packages
         uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 
       - name: Build project
-        run: ./gradlew clean build
+        run: mvn clean install
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts
-          path: build/libs/*.jar, build/reports/jacoco/test/jacocoTestReport.xml
+          path: target/*.jar
 
   coverage:
     runs-on: ubuntu-latest
@@ -42,12 +42,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run JaCoCo Coverage
-        run: ./show_jacoco_coverage.sh
-#          net/yanen/activity/monitor/service/ActivityLogService \
-#          net/yanen/activity/monitor/service/DetectionActivityService \
-#          net/yanen/activity/monitor/controller/DetectionController \
-#          net/yanen/activity/monitor/service/detection/RelativeAmountCheckActions \
-#          net/yanen/activity/monitor/service/DetectionService
+        run: mvn test jacoco:report
 
   dockerize:
     runs-on: ubuntu-latest
