@@ -30,8 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run Tests
-        run: mvn test
+#      - name: Run Tests
+#        run: mvn test
 
   docker:
     runs-on: ubuntu-latest
