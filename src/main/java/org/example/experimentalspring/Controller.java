@@ -1,8 +1,6 @@
 package org.example.experimentalspring;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,6 +14,7 @@ public class Controller {
 
 	@GetMapping("/test2")
 	public String tt2() {
-		return "Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2";
+		return "Test2Test2Test2Test2Test2Test2Test2Test2" +
+				"Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2Test2";
 	}
 }
