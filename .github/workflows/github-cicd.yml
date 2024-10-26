@@ -70,5 +70,6 @@ jobs:
 
       - name: Apply Kubernetes configurations
         run: |
+          ls -l
           kubectl apply -f k8s-deployment.yaml
           kubectl apply -f k8s-service.yaml
