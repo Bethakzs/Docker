@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: Maven Jar Plugin 3.2.0
+Build-Jdk-Spec: 22
+Specification-Title: ExperimentalSpring
+Specification-Version: 0.0
+Implementation-Title: ExperimentalSpring
+Implementation-Version: 0.0.1-SNAPSHOT
+Main-Class: org.example.experimentalspring.WorkClass
+

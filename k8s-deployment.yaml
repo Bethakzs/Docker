@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: spring-boot-k8s
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: spring-boot-k8s
-  replicas: 1
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-k8s
-          image: springboot-k8s-example:1.1
+          image: bethakzs/experimental:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
