@@ -67,12 +67,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+          sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+      - name: Start Minikube
+        run: |
+          minikube start --driver=none
+
       - name: Set up kubectl
         run: |
           sudo apt-get install -y kubectl
-
-      - name: List all files
-        run: ls -R  # Перевірка всіх файлів у репозиторії
 
       - name: Apply Kubernetes configurations
         run: |
