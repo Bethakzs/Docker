@@ -64,12 +64,18 @@ jobs:
     needs: docker
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up kubectl
         run: |
           sudo apt-get install -y kubectl
 
+      - name: List all files
+        run: ls -R  # Перевірка всіх файлів у репозиторії
+
       - name: Apply Kubernetes configurations
         run: |
-          ls -l
           kubectl apply -f k8s-deployment.yaml
           kubectl apply -f k8s-service.yaml
+  
