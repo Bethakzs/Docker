@@ -67,24 +67,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y curl
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-          sudo install minikube-linux-amd64 /usr/local/bin/minikube
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
 
-      - name: Start Minikube
+      - name: Deploy to local machine
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         run: |
-          minikube start --driver=none
-
-      - name: Set up kubectl
-        run: |
-          sudo apt-get install -y kubectl
-
-      - name: Apply Kubernetes configurations
-        run: |
-          kubectl apply -f k8s-deployment.yaml --validate=false
-          kubectl apply -f k8s-service.yaml --validate=false
-
-  
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@${{ secrets.SERVER_IP_ADDRESS }} << 'EOF'
+            kubectl apply -f k8s-deployment.yaml --validate=false
+            kubectl apply -f k8s-service.yaml --validate=false
+          EOF
