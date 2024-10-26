@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: experimental-app
+  name: spring-boot-k8s
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: experimental-app
+      app: spring-boot-k8s
   template:
     metadata:
       labels:
-        app: experimental-app
+        app: spring-boot-k8s
     spec:
       containers:
-        - name: experimental-app-container
+        - name: spring-boot-k8s
           image: bethakzs/experimental:latest
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 8080
