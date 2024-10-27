@@ -59,23 +59,10 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/experimental:latest
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: docker
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
-
-      - name: Deploy to local machine
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        run: |
-          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@${{ secrets.SERVER_IP_ADDRESS }} << 'EOF'
-            kubectl apply -f k8s-deployment.yaml --validate=false
-            kubectl apply -f k8s-service.yaml --validate=false
-          EOF
+#  deploy:
+#    runs-on: ubuntu-latest
+#    needs: docker
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
